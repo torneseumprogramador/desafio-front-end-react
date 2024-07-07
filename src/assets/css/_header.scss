@@ -3,15 +3,12 @@ header{
     padding: 10px;
     height: 60px;
     color: #fff;
+    a{
+        color: #fff;
+        text-decoration: none;
+    }
     img {
         width: 40px;
     }
-    nav {
-        ul {
-            li {
-                display: inline-block;
-                margin-left: 10px;
-            }
-        }
-    }
+    @import "nav";
 }

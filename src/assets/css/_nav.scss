@@ -1,0 +1,15 @@
+nav {
+    ul {
+        li {
+            display: inline-block;
+            margin-left: 10px;
+            a{
+                color: #cfcfcf;
+                &.ativo{
+                   font-weight: bold; 
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

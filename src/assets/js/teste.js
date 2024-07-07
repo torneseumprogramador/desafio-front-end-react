@@ -1,0 +1,1 @@
+alert('Exemplo de arquivo js')
