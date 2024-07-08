@@ -1,6 +1,7 @@
 import React from 'react';
 
-import './assets/scss/sb-admin-2.scss';
+// import './assets/scss/sb-admin-2.scss'; // mando para o sass
+import './assets/css/sb-admin-2.min.css';  // mando para o css builded
 
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';

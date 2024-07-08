@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import profile from '../assets/imagens/undraw_profile.svg';
 
-function Nav({menuAtivo = "home"}) {
+function Nav() {
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
