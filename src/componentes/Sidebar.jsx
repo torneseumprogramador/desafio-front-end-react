@@ -27,46 +27,44 @@ function Sidebar({menuAtivo = "home"}) {
             Outros links
         </div>
 
-        <li className="nav-item">
-            <a className="nav-link collapsed" href={()=> {}} 
+        <li className={ menuAtivo !== "home"? "nav-item active" : "nav-item" } >
+            <a className={ menuAtivo !== "home"? "nav-link" : "nav-link collapsed" } href={()=> {}} 
                 data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                aria-expanded="false" aria-controls="collapseTwo"
+                aria-expanded={menuAtivo}
+                aria-controls="collapseTwo"
                 data-toggle="collapse"
             >
                 <i className="fas fa-fw fa-folder"></i>
                 <span>Paginas</span>
             </a>
-            <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwo" className={ menuAtivo !== "home"? "collapse show" : "collapse" } aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div className="bg-white py-2 collapse-inner rounded">
                     <h6 className="collapse-header">Outros:</h6>
-
-                    <li className={ menuAtivo === "cadastro"? "nav-item active" : "nav-item" }>
-                        <Link className="collapse-item" to="/cadastro">
-                            <i className="fas fa-fw fa-table"></i>
-                            <span>Cadastro</span>
-                        </Link>
-                    </li>
-                    <li className={ menuAtivo === "sobre"? "nav-item active" : "nav-item" }>
-                        <Link className="collapse-item" to="/sobre">
-                            <i className="fas fa-fw fa-chart-area"></i>
-                            <span>Sobre</span>
-                        </Link>
-                    </li>
-                    <li className={ menuAtivo === "login"? "nav-item active" : "nav-item" }>
-                        <Link className="collapse-item" to="/login">
-                            <i className="fas fa-fw fa-cog"></i>
-                            <span>Login</span>
-                        </Link>
-                    </li>
+                    <ul>
+                        <li>
+                            <Link className={ menuAtivo === "cadastro"? "collapse-item active" : "collapse-item" } to="/cadastro">
+                                <i className="fas fa-fw fa-table"></i>
+                                <span>Cadastro</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className={ menuAtivo === "sobre"? "collapse-item active" : "collapse-item" } to="/sobre">
+                                <i className="fas fa-fw fa-chart-area"></i>
+                                <span>Sobre</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className={ menuAtivo === "login"? "collapse-item active" : "collapse-item" } to="/login">
+                                <i className="fas fa-fw fa-cog"></i>
+                                <span>Login</span>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </li>
 
         <hr className="sidebar-divider d-none d-md-block"/>
-
-        <div className="text-center d-none d-md-inline">
-            <button className="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
 
         <div className="sidebar-card d-none d-lg-flex">
             <img className="sidebar-card-illustration mb-2" src={rocketImg} alt="..." />
