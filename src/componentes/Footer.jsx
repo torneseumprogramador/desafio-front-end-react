@@ -1,9 +1,11 @@
 function Footer() {
   return (
-    <footer className="col-12">
-      <a href="https://www.torneseumprogramador.com.br/cursos/desafio_front_end" target="_blank" rel="noopener noreferrer">
-        Desafio de front-end
-      </a> | Todos os direitos reservados
+    <footer className="sticky-footer bg-white">
+        <div className="container my-auto">
+            <div className="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2021</span>
+            </div>
+        </div>
     </footer>
   );
 }
