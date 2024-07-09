@@ -5,7 +5,6 @@
 
 ### Proximos
 - Estrutura de layouts
-    - Criar estrutura com material UI
     - Criar projeto ou adicionar o typsscript no projeto
 
 - Integração
