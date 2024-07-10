@@ -4,9 +4,6 @@
 
 
 ### Proximos
-- Estrutura de layouts
-    - Criar projeto ou adicionar o typsscript no projeto
-
 - Integração
     - Integrar com APIs
     - Integrar Trabalhar com localstorage
