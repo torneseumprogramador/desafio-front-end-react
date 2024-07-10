@@ -1,7 +1,8 @@
+import React from 'react';
 import './assets/css/style.scss';
 import logo from './assets/imagens/logo.webp';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="row">
       <header className="col-12 row">
@@ -21,12 +22,12 @@ function App() {
         <section className="col-12 col-md-8">
           conteudo
         </section>
-        <aside  className="col-12 col-md-4">
+        <aside className="col-12 col-md-4">
           itens lateral
         </aside>
       </main>
       <footer className="col-12">
-      footer
+        footer
       </footer>
     </div>
   );
