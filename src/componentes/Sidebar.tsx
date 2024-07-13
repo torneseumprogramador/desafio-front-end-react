@@ -52,9 +52,9 @@ const Sidebar: React.FC<SidebarProps> = ({ menuAtivo = "home" }) => {
             <h6 className="collapse-header">Outros:</h6>
             <ul>
               <li>
-                <Link className={menuAtivo === "cadastro" ? "collapse-item active" : "collapse-item"} to="/cadastro">
+                <Link className={menuAtivo === "produtos" ? "collapse-item active" : "collapse-item"} to="/produtos">
                   <i className="fas fa-fw fa-table"></i>
-                  <span>Cadastro</span>
+                  <span>Produtos</span>
                 </Link>
               </li>
               <li>

@@ -1,12 +1,13 @@
+import Sidebar from "../../componentes/Sidebar";
+import Nav from "../../componentes/Nav";
+import Footer from "../../componentes/Footer";
+import ProdutoServico from "../../servicos/produtoServico";
 import React, { useEffect, useState } from 'react';
-import Sidebar from "../componentes/Sidebar";
-import Nav from "../componentes/Nav";
-import Footer from "../componentes/Footer";
-import ProdutoServico from '../servicos/produtoServico';
-import Produto from '../models/produto';
-import formatDate from '../helpers/dateHelper';
+import { Link } from 'react-router-dom';
+import Produto from "../../models/produto";
+import formatDate from '../../helpers/dateHelper';
 
-const Cadastro: React.FC = () => {
+const ListaProdutos: React.FC = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
 
   useEffect(() => {
@@ -21,19 +22,24 @@ const Cadastro: React.FC = () => {
 
     carregarProdutos();
   }, []);
-  
+
   return (
     <div id="wrapper">
-      <Sidebar menuAtivo="cadastro" />
+      <Sidebar menuAtivo="produtos" />
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
           <Nav />
           <div className="container-fluid">
             <div className="card shadow mb-4">
-              <div className="card-header py-3">
-                <h6 className="m-0 font-weight-bold text-primary">
-                  Cadastro
-                </h6>
+              <div className="card-header py-3 row">
+                <div className="col-11">
+                  <h6 className="m-0 font-weight-bold text-primary">
+                    Cadastro de produtos
+                  </h6>
+                </div>
+                <div className="col-1">
+                  <Link className="btn btn-primary" to="/produtos/novo">Novo</Link>
+                </div>
               </div>
               <div className="card-body">
                 <div className="table-responsive">
@@ -94,4 +100,4 @@ const Cadastro: React.FC = () => {
   );
 }
 
-export default Cadastro;
+export default ListaProdutos;
