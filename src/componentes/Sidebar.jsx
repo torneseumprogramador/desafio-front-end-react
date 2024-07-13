@@ -5,12 +5,12 @@ function Sidebar({menuAtivo = "home"}) {
   return (
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/">
             <div className="sidebar-brand-icon rotate-n-15">
                 <i className="fas fa-laugh-wink"></i>
             </div>
             <div className="sidebar-brand-text mx-3">Desafio</div>
-        </a>
+        </Link>
 
         <hr className="sidebar-divider my-0"/>
 
@@ -28,7 +28,7 @@ function Sidebar({menuAtivo = "home"}) {
         </div>
 
         <li className={ menuAtivo !== "home"? "nav-item active" : "nav-item" } >
-            <a className={ menuAtivo !== "home"? "nav-link" : "nav-link collapsed" } href={()=> {}} 
+            <a className={ menuAtivo !== "home"? "nav-link" : "nav-link collapsed" } href="#" 
                 data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                 aria-expanded={menuAtivo}
                 aria-controls="collapseTwo"
@@ -42,9 +42,9 @@ function Sidebar({menuAtivo = "home"}) {
                     <h6 className="collapse-header">Outros:</h6>
                     <ul>
                         <li>
-                            <Link className={ menuAtivo === "cadastro"? "collapse-item active" : "collapse-item" } to="/cadastro">
+                            <Link className={ menuAtivo === "produtos"? "collapse-item active" : "collapse-item" } to="/produtos">
                                 <i className="fas fa-fw fa-table"></i>
-                                <span>Cadastro</span>
+                                <span>Produtos</span>
                             </Link>
                         </li>
                         <li>

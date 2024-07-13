@@ -25,6 +25,23 @@ class ProdutoServico {
 
         return produtos;
     }
+
+    static async salvar(produto) {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzIwNzc3NzMxLCJleHAiOjE3MjA4NjQxMzF9.sRiNXBoo2zNG7y0BlH4eaofhkRX7IUe5JmwpvNG58MY";
+    
+        const response = await fetch(`${urlApi}/produto`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(produto)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    }
 }
 
 export default ProdutoServico;
