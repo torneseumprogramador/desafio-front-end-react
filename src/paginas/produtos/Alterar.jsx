@@ -1,18 +1,35 @@
 import Sidebar from "../../componentes/Sidebar";
 import Nav from "../../componentes/Nav";
 import Footer from "../../componentes/Footer";
-import { Link } from 'react-router-dom';
-import React from 'react';
-import Form from "./Form"
-import { useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
 import ProdutoServico from "../../services/produtoService";
+import Form from "./Form";
+import { useNavigate } from 'react-router-dom';
 
-function NovoProduto() {
+function AlterarProduto() {
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  const [produto, setProduto] = useState({});
+
+  useEffect(() => {
+    carregarProduto(id);
+  }, []);
+
+  const carregarProduto = async (id) => {
+    try {
+      let produto = await ProdutoServico.buscarPorId(id);
+      setProduto(produto);
+    } catch (error) {
+      console.error('Erro ao carregar produtos:', error);
+    }
+  };
 
   const handleSubmit = async (event, produto, setErro) => {
     event.preventDefault();
     const productData = {
+      id: produto?.id,
       nome: produto?.nome,
       preco: produto?.preco,
       descricao: produto?.descricao,
@@ -21,6 +38,7 @@ function NovoProduto() {
 
     try {
       await ProdutoServico.salvar(productData);
+      window.alert("Alterado com sucesso!")
       navigate('/produtos');
     } catch (e) {
       setErro(e.message);
@@ -53,7 +71,7 @@ function NovoProduto() {
                   >
                     <div className="row">
                       <div className="col-sm-12">
-                        <Form handleSubmit={handleSubmit}/>
+                        <Form produto={produto} handleSubmit={handleSubmit} />
                       </div>
                     </div>
                   </div>
@@ -68,4 +86,4 @@ function NovoProduto() {
   );
 }
 
-export default NovoProduto;
+export default AlterarProduto;

@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './paginas/Home';
 import ListaProdutos from './paginas/produtos/Lista';
 import NovoProduto from './paginas/produtos/Novo';
+import AlterarProduto from './paginas/produtos/Alterar';
 import Sobre from './paginas/Sobre';
 import Login from './paginas/Login';
 
@@ -23,6 +24,7 @@ root.render(
 
       <Route path="/produtos" element={<ListaProdutos />} />
       <Route path="/produtos/novo" element={<NovoProduto />} />
+      <Route path="/produtos/:id/alterar" element={<AlterarProduto />} />
 
     </Routes>
   </Router>
