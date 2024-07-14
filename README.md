@@ -5,8 +5,6 @@
 
 ### Proximos
 - Integração
-    - Criar API piloto com node.js e sqlite (Não é o Foco, por isso vou utilizar 100% IA)
-    - Integrar com APIs
     - Integrar Trabalhar com localstorage
     - Integrar Trabalhar com login e guard
 
