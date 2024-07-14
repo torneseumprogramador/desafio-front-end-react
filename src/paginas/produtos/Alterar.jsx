@@ -11,7 +11,7 @@ function AlterarProduto() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [produto, setProduto] = useState({});
+  const [produto, setProduto] = useState(null);
 
   useEffect(() => {
     carregarProduto(id);
@@ -71,7 +71,7 @@ function AlterarProduto() {
                   >
                     <div className="row">
                       <div className="col-sm-12">
-                        <Form produto={produto} handleSubmit={handleSubmit} />
+                       { produto && <Form produto={produto} handleSubmit={handleSubmit} /> }
                       </div>
                     </div>
                   </div>
