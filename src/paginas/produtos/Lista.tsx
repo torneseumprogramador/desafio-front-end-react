@@ -11,17 +11,28 @@ const ListaProdutos: React.FC = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
 
   useEffect(() => {
-    const carregarProdutos = async () => {
+    carregarProdutos();
+  }, []);
+
+  const carregarProdutos = async () => {
+    try {
+      let produtos:Produto[] = await ProdutoServico.todos();
+      setProdutos(produtos);
+    } catch (error) {
+      console.error('Erro ao carregar produtos:', error);
+    }
+  };
+
+  const excluirProduto = async (id: number) => {
+    if(window.confirm("Confirma?")){
       try {
-        let produtos:Produto[] = await ProdutoServico.todos();
-        setProdutos(produtos);
+        await ProdutoServico.excluirPorId(id);
+        carregarProdutos();
       } catch (error) {
         console.error('Erro ao carregar produtos:', error);
       }
-    };
-
-    carregarProdutos();
-  }, []);
+    }
+  }
 
   return (
     <div id="wrapper">
@@ -59,6 +70,7 @@ const ListaProdutos: React.FC = () => {
                             <th>Data de Criação</th>
                             <th>Data de Modificação</th>
                             <th>Quantidade em Estoque</th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tfoot>
@@ -70,6 +82,7 @@ const ListaProdutos: React.FC = () => {
                             <th>Data de Criação</th>
                             <th>Data de Modificação</th>
                             <th>Quantidade em Estoque</th>
+                            <th></th>
                           </tr>
                         </tfoot>
                           <tbody>
@@ -82,6 +95,10 @@ const ListaProdutos: React.FC = () => {
                                 <td>{formatDate(produto.data_criacao)}</td>
                                 <td>{formatDate(produto.data_modificacao)}</td>
                                 <td>{produto.quantidade_estoque}</td>
+                                <td style={{width: "200px"}}>
+                                  <Link className="btn btn-warning" to={`/produtos/${produto.id}/alterar`} style={{marginRight: "10px"}}>Alterar</Link>
+                                  <button className="btn btn-danger" onClick={() => { excluirProduto(produto.id) }}>Excluir</button>
+                                </td>
                               </tr>
                             ))}
                           </tbody>
