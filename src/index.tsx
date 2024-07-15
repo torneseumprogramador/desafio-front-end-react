@@ -13,6 +13,7 @@ import Login from './paginas/Login';
 import ListaProdutos from './paginas/produtos/Lista';
 import NovoProduto from './paginas/produtos/Novo';
 import AlterarProduto from './paginas/produtos/Alterar';
+import ValidarRotasPrivadasGuard from './componentes/ValidarRotasPrivadasGuard';
 
 // Certifique-se de que o elemento root não é null
 const rootElement = document.getElementById('root');
@@ -22,13 +23,16 @@ if (rootElement) {
   root.render(
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sobre" element={<Sobre />} />
         <Route path="/login" element={<Login />} />
+        
+        <Route element={<ValidarRotasPrivadasGuard />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/sobre" element={<Sobre />} />
 
-        <Route path="/produtos" element={<ListaProdutos />} />
-        <Route path="/produtos/novo" element={<NovoProduto />} />
-        <Route path="/produtos/:id/alterar" element={<AlterarProduto />} />
+          <Route path="/produtos" element={<ListaProdutos />} />
+          <Route path="/produtos/novo" element={<NovoProduto />} />
+          <Route path="/produtos/:id/alterar" element={<AlterarProduto />} />
+        </Route>
       </Routes>
     </Router>
   );

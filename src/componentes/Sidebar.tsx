@@ -1,12 +1,22 @@
 import React from 'react';
 import rocketImg from '../assets/imagens/undraw_rocket.svg';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import LoginServico from '../servicos/loginServico';
 
 interface SidebarProps {
   menuAtivo?: string;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ menuAtivo = "home" }) => {
+  const navigate = useNavigate();
+
+  const handleSair = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+    event.preventDefault();
+    LoginServico.clearLocalStorage();
+    navigate('/login');
+  }
+
   return (
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -64,10 +74,10 @@ const Sidebar: React.FC<SidebarProps> = ({ menuAtivo = "home" }) => {
                 </Link>
               </li>
               <li>
-                <Link className={menuAtivo === "login" ? "collapse-item active" : "collapse-item"} to="/login">
-                  <i className="fas fa-fw fa-cog"></i>
-                  <span>Login</span>
-                </Link>
+                <a href="#" onClick={handleSair} className={"collapse-item"}>
+                    <i className="fas fa-fw fa-cog"></i>
+                    <span>Sair</span>
+                </a>
               </li>
             </ul>
           </div>

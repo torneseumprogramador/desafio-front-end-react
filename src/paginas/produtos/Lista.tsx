@@ -6,9 +6,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Produto from "../../models/produto";
 import formatDate from '../../helpers/dateHelper';
+import LoginServico from "../../servicos/loginServico";
 
 const ListaProdutos: React.FC = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
+  const produtoServico = new ProdutoServico(LoginServico.getToken());
 
   useEffect(() => {
     carregarProdutos();
@@ -16,7 +18,7 @@ const ListaProdutos: React.FC = () => {
 
   const carregarProdutos = async () => {
     try {
-      let produtos:Produto[] = await ProdutoServico.todos();
+      let produtos:Produto[] = await produtoServico.todos();
       setProdutos(produtos);
     } catch (error) {
       console.error('Erro ao carregar produtos:', error);
@@ -26,7 +28,7 @@ const ListaProdutos: React.FC = () => {
   const excluirProduto = async (id: number) => {
     if(window.confirm("Confirma?")){
       try {
-        await ProdutoServico.excluirPorId(id);
+        await produtoServico.excluirPorId(id);
         carregarProdutos();
       } catch (error) {
         console.error('Erro ao carregar produtos:', error);

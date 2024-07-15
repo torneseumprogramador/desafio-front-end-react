@@ -7,8 +7,10 @@ import Form from "./Form"
 import { useNavigate } from 'react-router-dom';
 import ProdutoServico from "../../servicos/produtoServico";
 import Produto from "../../models/produto";
+import LoginServico from "../../servicos/loginServico";
 
 function NovoProduto() {
+  const produtoServico = new ProdutoServico(LoginServico.getToken());
   const navigate = useNavigate();
 
   const handleSubmit = async (
@@ -19,7 +21,7 @@ function NovoProduto() {
     event.preventDefault();
 
     try {
-      await ProdutoServico.salvar(produto);
+      await produtoServico.salvar(produto);
       navigate('/produtos');
     } catch (e: unknown) {
       if (e instanceof Error) {
