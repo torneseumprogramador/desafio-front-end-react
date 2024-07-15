@@ -6,9 +6,11 @@ import React from 'react';
 import Form from "./Form"
 import { useNavigate } from 'react-router-dom';
 import ProdutoServico from "../../services/produtoService";
+import LoginService from "../../services/loginService";
 
 function NovoProduto() {
   const navigate = useNavigate();
+  const produtoServico = new ProdutoServico(LoginService.getToken());
 
   const handleSubmit = async (event, produto, setErro) => {
     event.preventDefault();
@@ -20,7 +22,7 @@ function NovoProduto() {
     };
 
     try {
-      await ProdutoServico.salvar(productData);
+      await produtoServico.salvar(productData);
       navigate('/produtos');
     } catch (e) {
       setErro(e.message);

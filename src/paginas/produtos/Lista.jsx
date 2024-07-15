@@ -4,9 +4,11 @@ import Footer from "../../componentes/Footer";
 import ProdutoServico from "../../services/produtoService";
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LoginService from "../../services/loginService";
 
 function ListaProdutos() {
   const [produtos, setProdutos] = useState([]);
+  const produtoServico = new ProdutoServico(LoginService.getToken());
 
   useEffect(() => {
     carregarProdutos();
@@ -14,7 +16,7 @@ function ListaProdutos() {
 
   const carregarProdutos = async () => {
     try {
-      let produtos = await ProdutoServico.todos();
+      let produtos = await produtoServico.todos();
       setProdutos(produtos);
     } catch (error) {
       console.error('Erro ao carregar produtos:', error);
@@ -24,7 +26,7 @@ function ListaProdutos() {
   const excluirProduto = async (produtoId) => {
     if(window.confirm("Confirma?")){
       try {
-        await ProdutoServico.excluirPorId(produtoId);
+        await produtoServico.excluirPorId(produtoId);
         carregarProdutos();
       } catch (error) {
         console.error('Erro ao carregar produtos:', error);

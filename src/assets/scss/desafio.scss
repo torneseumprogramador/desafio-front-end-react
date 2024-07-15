@@ -12,3 +12,15 @@
         }
     }
 }
+
+.login{
+    padding-top: 5%;
+    .container-fluid{
+        text-align: center;
+        .card{
+            min-width: 350px;
+            width: 40%;
+            display: inline-block;
+        }
+    }
+}

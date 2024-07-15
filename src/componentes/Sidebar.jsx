@@ -1,7 +1,17 @@
 import rocketImg from '../assets/imagens/undraw_rocket.svg';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import LoginService from '../services/loginService';
 
 function Sidebar({menuAtivo = "home"}) {
+  const navigate = useNavigate();
+
+  const handleSair = (event) => {
+    event.preventDefault();
+    LoginService.clearLocalStorage();
+    navigate('/login');
+  }
+  
   return (
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -54,10 +64,10 @@ function Sidebar({menuAtivo = "home"}) {
                             </Link>
                         </li>
                         <li>
-                            <Link className={ menuAtivo === "login"? "collapse-item active" : "collapse-item" } to="/login">
+                            <a href="#" onClick={handleSair} className={"collapse-item"}>
                                 <i className="fas fa-fw fa-cog"></i>
-                                <span>Login</span>
-                            </Link>
+                                <span>Sair</span>
+                            </a>
                         </li>
                     </ul>
                 </div>

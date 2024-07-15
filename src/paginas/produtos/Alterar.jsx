@@ -6,10 +6,12 @@ import React, {useState, useEffect} from 'react';
 import ProdutoServico from "../../services/produtoService";
 import Form from "./Form";
 import { useNavigate } from 'react-router-dom';
+import LoginService from "../../services/loginService";
 
 function AlterarProduto() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const produtoServico = new ProdutoServico(LoginService.getToken());
 
   const [produto, setProduto] = useState(null);
 
@@ -19,7 +21,7 @@ function AlterarProduto() {
 
   const carregarProduto = async (id) => {
     try {
-      let produto = await ProdutoServico.buscarPorId(id);
+      let produto = await produtoServico.buscarPorId(id);
       setProduto(produto);
     } catch (error) {
       console.error('Erro ao carregar produtos:', error);
@@ -37,7 +39,7 @@ function AlterarProduto() {
     };
 
     try {
-      await ProdutoServico.salvar(productData);
+      await produtoServico.salvar(productData);
       window.alert("Alterado com sucesso!")
       navigate('/produtos');
     } catch (e) {

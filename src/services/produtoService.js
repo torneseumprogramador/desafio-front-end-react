@@ -1,14 +1,17 @@
 import urlApi from "../ambiente/urlApi";
 
 class ProdutoServico {
-    static async todos() {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzIwOTQ3OTMxLCJleHAiOjE3MjEwMzQzMzF9.PeCIS2Y4vuy5C5TmKwQ2v_HUDJZ3dylwhYhBKFZyaVI";
+    constructor(token){
+        this.token = token
+    };
+
+    async todos() {
         let produtos = [];
         try {
             const response = await fetch(`${urlApi}/produtos`, {
                 method: 'GET',
                 headers: {
-                  'Authorization': `Bearer ${token}`,
+                  'Authorization': `Bearer ${this.token}`,
                   'Content-Type': 'application/json'
                 }
             });
@@ -26,13 +29,12 @@ class ProdutoServico {
         return produtos;
     }
 
-    static async buscarPorId(id) {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzIwOTQ3OTMxLCJleHAiOjE3MjEwMzQzMzF9.PeCIS2Y4vuy5C5TmKwQ2v_HUDJZ3dylwhYhBKFZyaVI";
+    async buscarPorId(id) {
         try {
             const response = await fetch(`${urlApi}/produto/${id}`, {
                 method: 'GET',
                 headers: {
-                  'Authorization': `Bearer ${token}`,
+                  'Authorization': `Bearer ${this.token}`,
                   'Content-Type': 'application/json'
                 }
             });
@@ -50,16 +52,14 @@ class ProdutoServico {
         return {};
     }
 
-    static async salvar(produto) {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzIwOTQ3OTMxLCJleHAiOjE3MjEwMzQzMzF9.PeCIS2Y4vuy5C5TmKwQ2v_HUDJZ3dylwhYhBKFZyaVI";
-    
+    async salvar(produto) {
         let response = null;
 
         if(!produto?.id || produto?.id < 1){
             response = await fetch(`${urlApi}/produto`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${this.token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(produto)
@@ -69,7 +69,7 @@ class ProdutoServico {
             response = await fetch(`${urlApi}/produto/${produto.id}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${this.token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(produto)
@@ -81,13 +81,11 @@ class ProdutoServico {
         }
     }
 
-    static async excluirPorId(produtoId) {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzIwOTQ3OTMxLCJleHAiOjE3MjEwMzQzMzF9.PeCIS2Y4vuy5C5TmKwQ2v_HUDJZ3dylwhYhBKFZyaVI";
-    
+    async excluirPorId(produtoId) {
         const response = await fetch(`${urlApi}/produto/${produtoId}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${this.token}`,
                 'Content-Type': 'application/json'
             }
         });
