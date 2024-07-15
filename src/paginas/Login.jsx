@@ -18,7 +18,9 @@ function Login() {
       LoginService.setLocalStorage(data.token);
       navigate('/');
     } catch (e) {
-      setErro(e.message);
+      let mensagem = e.response?.data
+      if(!mensagem) mensagem = e.message
+      setErro(mensagem);
     }
   }
 
