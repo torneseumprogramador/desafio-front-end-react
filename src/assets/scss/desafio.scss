@@ -1,0 +1,26 @@
+.collapse{
+    ul{
+        list-style-type: none;
+        padding: 0;
+        
+        li {
+            a {
+                span{
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+.login{
+    padding-top: 5%;
+    .container-fluid{
+        text-align: center;
+        .card{
+            min-width: 350px;
+            width: 40%;
+            display: inline-block;
+        }
+    }
+}
