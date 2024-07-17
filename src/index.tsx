@@ -14,6 +14,7 @@ import ListaProdutos from './paginas/produtos/Lista';
 import NovoProduto from './paginas/produtos/Novo';
 import AlterarProduto from './paginas/produtos/Alterar';
 import ValidarRotasPrivadasGuard from './componentes/ValidarRotasPrivadasGuard';
+import NaoEncontrado from './paginas/NaoEncontrado';
 
 // Certifique-se de que o elemento root não é null
 const rootElement = document.getElementById('root');
@@ -24,6 +25,7 @@ if (rootElement) {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NaoEncontrado />} />
         
         <Route element={<ValidarRotasPrivadasGuard />}>
           <Route path="/" element={<Home />} />
